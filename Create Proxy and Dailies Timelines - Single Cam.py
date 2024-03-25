@@ -35,7 +35,7 @@ def get_timelines():
 
 def main():
     reels = WORKING_MP_FOLDER.GetSubFolders()
-    all_clips = {}
+    all_clips = []
     circle_clips = []
 
     for key,value in reels.items():
@@ -49,10 +49,9 @@ def main():
         # get all the clips in the reel folder
         reel_clips = reel.GetClips()
 
-        all_clips.update(reel_clips)
-
         # check for circled clips
         for clip_key, clip_value in reel_clips.items():
+            all_clips.append(clip_value)
             metadata = clip_value.GetClipProperty("Good Take")
             if (metadata == "1"):
                 circle_clips.append(clip_value)
